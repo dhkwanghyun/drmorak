@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="egovframework.morak.main.service.impl.MorakMapper">
+
+	<select id="loginSelect" resultType="Int">
+		SELECT
+		 	COUNT(*)
+		FROM tb_login	
+		WHERE login_id = #{loginId}
+		  AND login_pw = #{loginPw}	
+	</select>
+	
+	<select id="selectBranchList" resultType="egovMap">
+		SELECT
+		 	 branch_seq
+		 	,branch_area
+		 	,branch_address 
+			,CONCAT(branch_area,' ',branch_name) AS branch_name
+			,branch_code
+			,branch_yn
+			,branch_indate
+			,branch_update
+			,branch_update_id
+		FROM tb_branch	
+		WHERE BRANCH_YN = 'Y'	
+	</select>
+
+	<insert id="reserveInsert" parameterType="morakVO">
+			INSERT INTO tb_reserve
+				( 
+				    reserve_branch
+				  , reserve_date_day
+				  , reserve_name
+				  , reserve_phone
+				  , reserve_coupon
+				  , reserve_content
+				  , reserve_indate
+				 )
+			VALUES ( 
+				    #{reserveBranch}
+				  , #{reserveDateDay}
+				  , #{reserveName}
+				  , #{reservePhone}
+				  , #{reserveCoupon}
+				  , #{reserveContent}
+				  , SYSDATE()
+				   )
+	</insert>
+	
+	<select id="selectReserveList" parameterType="morakVO" resultType="egovMap">
+			SELECT
+			    reserve_seq,
+			    (select CONCAT(branch_area,' ',branch_name) AS branch_name from tb_branch where branch_code = reserve_branch) AS reserve_branch,
+			    reserve_date_day,
+			    reserve_date_time,
+			    reserve_name,
+			    reserve_phone,
+			    reserve_coupon,
+			    reserve_content,
+			    reserve_indate,
+			    reserve_update,
+			    reserve_update_Id
+			FROM tb_reserve
+			WHERE 1=1
+			<if test="srchInputText != null">
+				AND ${srchType} LIKE CONCAT('%',#{srchInputText},'%')
+			</if>
+			<if test="srchBranch != null ">
+				AND reserve_branch = #{srchBranch} 
+			</if>
+	</select>
+
+	
+
+</mapper>

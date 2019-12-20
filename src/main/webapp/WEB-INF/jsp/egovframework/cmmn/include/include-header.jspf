@@ -1,0 +1,19 @@
+<%@ page pageEncoding="utf-8"%>
+<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- <meta http-equiv="X-UA-Compatible" content="IE=edge"/> -->
+<link href="/resource/css/bootstrap.min.css" rel="stylesheet" />
+<link href="/resource/ionicons/css/ionicons.min.css" rel="stylesheet" />
+<link href="/resource/css/animate.min.css" rel="stylesheet" />
+<link href="/resource/css/aos.css" rel="stylesheet" />
+<!-- main style -->
+<link href="/resource/css/style.css" rel="stylesheet" />
+<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+<link href="/resource/css/datetimepickerstyle.css" rel="stylesheet" />
+<!--// 어드민페이지에만 -->
+<link href="/resource/css/table.css" rel="stylesheet" />
+<!-- jQuery -->
+<script src="/resource/js/jquery.js"></script>
+
+
+
